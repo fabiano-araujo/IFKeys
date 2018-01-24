@@ -1,0 +1,17 @@
+<resources>
+    <dimen name="peekHeight">50dp</dimen>
+    <dimen name="width_card">110dp</dimen>
+    <dimen name="margen_left_card">5dp</dimen>
+    <dimen name="seekbar_volume">150dp</dimen>
+    <dimen name="card_top">200dp</dimen>
+    <dimen name="card_genero">150dp</dimen>
+    <dimen name="sizeImageNotification">120dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="height_CollapsingToolbarLayout">250dp</dimen>
+    <dimen name="margen_right_scroll">10dp</dimen>
+</resources>

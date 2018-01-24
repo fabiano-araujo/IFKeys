@@ -1,0 +1,155 @@
+<resources>
+    <string name="action_settings">Ajustes</string>
+    <string name="drawer_open" />
+    <string name="drawer_close" />
+    <string name="title_activity_playlists">Listas de reproducción</string>
+
+    <string name="ranking_e_generos">Clasificación y géneros proporcionados por luciérnaga.</string>
+    <string name="aqui_voce_pode">Aplicaciones recomendadas</string>
+    <string name="title_home">Primero</string>
+    <string name="top_musics">Mejores canciones</string>
+    <string name="top_artists">Mejores artistas</string>
+    <string name="top_albums">Mejores álbumes</string>
+    <string name="artistas">Artistas</string>
+    <string name="letras">Letras</string>
+    <string name="musics">Canciones</string>
+    <string name="mais_musics">Más música</string>
+    <string name="minhas_musics">Mis canciones</string>
+    <string name="artistas_desconhecido">Artistas desconocidos</string>
+    <string name="albums">álbumes</string>
+    <string name="sem_memoria">No hay suficiente memoria!</string>
+    <string name="erro_download">" Se ha producido un error de descarga!"</string>
+    <string name="genres">Géneros</string>
+    <string name="sair">Dejar</string>
+    <string name="pesquisar">Buscar</string>
+    <string name="historico">Historia</string>
+    <string name="esperar">Espere</string>
+    <string name="ficar_aqui">Quedarse aquí</string>
+    <string name="senha">Contraseña</string>
+    <string name="nada_encontrado">No se ha encontrado!</string>
+    <string name="navegar">Navegar</string>
+    <string name="sobre">Acerca de</string>
+    <string name="outras_versoes">Otras versiones</string>
+    <string name="add_aos_favoritos">Añadir a Favoritos</string>
+    <string name="add_aos_playlist">Añadir a la lista</string>
+
+    <string name="artitas_relacionados">Artistas relacionados</string>
+
+    <string name="fine_location_mensage_permitioln_mainmenu">Para tener una mejor experiencia con nuestra aplicación, permite ACCESS_FINE_LOCATION!</string>
+
+    <!--activity playlists-->
+    <string name="um_erro_desconhecido">Lo sentimos, se ha producido un error desconocido!</string>
+    <string name="empty_playlist">Esta lista no tiene música!</string>
+    <string name="tracks">Canciones</string>
+    <string name="downloaded">Descargado</string>
+    <string name="favorites">Favoritas</string>
+    <string name="title_toolbar_playlists">Listas de reproducción</string>
+
+    <!--activity player-->
+    <string name="conexao_ruim">Su conexión es muy mala, conecte de nuevo y vuelve a intentarlo!</string>
+    <string name="desconectado">Se ha desconectado, conecte y vuelva a intentarlo!</string>
+    <string name="isso_esta_custando">Esto está costando más de lo habitual!</string>
+    <string name="storage_mensage_permition_player">Para descargar esta canción permite WRITE_EXTERNAL_STORAGE!</string>
+    <string name="estou_ouvindo">Estoy escuchando</string>
+    <string name="no_whatlisten">En Whatlisten, un androide reproductor de música.</string>
+    <string name="playlist_atual">Lista de reproducción actual</string>
+
+    <string name="logar_mensage">Entre para ser capaz de completar la descarga!</string>
+    <string name="logar_action">Hacer login</string>
+    <string name="agora_nao">Ahora no</string>
+    <string name="atualizar">Actualización</string>
+    <string name="versao_desatualizada">La versión que está utilizando no está actualizado.</string>
+    <string name="assistir_video">Ver video</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="limit_excedido">Superado el límite</string>
+    <string name="compartilhar">Compartir</string>
+    <string name="maximo4">Máximo 4 descarga a la vez!</string>
+    <string name="compartilhar_mensage">Ve las mejores 100 canciones, artistas y álbumes. Descargar, escuchar y ver el video musical que desea, todo ello con una sola aplicación!</string>
+    <string name="melhor_app">La mejor aplicación Android para descargar música gratis!</string>
+    <string name="baixe_aqui">Descarga aquí</string>
+    <string name="compartilhe_e_baixe">Compartir y descargar su música!</string>
+
+    <!--activity cadastrar-->
+    <string name="nao_tenho_conta">¿No tienes una cuenta?</string>
+    <string name="esquici_minha_senha">Olvide mi contraseña</string>
+    <string name="cadastrar">Registrar</string>
+    <string name="digite_seu_nome">Introduzca su nombre</string>
+    <string name="email_usado">Este correo electrónico ya se utiliza!</string>
+    <string name="email_or_senha_incorretos">Correo electrónico o la contraseña son incorrectos!</string>
+    <string name="pelo_menos_4_digitos">Al menos 4 dígitos!</string>
+    <string name="enviada_para_email">Su contraseña ha sido enviada a su correo electrónico.</string>
+    <string name="carregando">Cargando ...</string>
+
+    <!--activity cadastrar-->
+    <string name="musicas_da_memoria">Canciones de la memoria</string>
+
+    <!--activity discografia-->
+    <string name="musicas_desse_album">Las canciones de este álbum</string>
+    <string name="outros_albuns">Otros álbumes</string>
+
+    <!--tab-->
+    <string name="nacional">Nacional</string>
+    <string name="internacional">Internacional</string>
+    <string name="geral">General</string>
+
+    <string name="deseja_sair">¿Quieres salir?</string>
+    <string name="sim">Sí</string>
+    <string name="nao">No</string>
+
+    <string name="reportar">Informe</string>
+    <string name="pronto">Listo</string>
+    <string name="digite_seu_comentario">Escriba su comentario!</string>
+    <string name="nova">Nuevo</string>
+    <string name="musica_salva">La música grabada!</string>
+    <string name="digite_o_nome_da">Introduce el nombre de la lista de reproducción!</string>
+
+    <string name="esta_playlist_ja">Esta lista ya existe!</string>
+
+    <string name="title_activity_clipe">videoclip</string>
+    <string name="excluir">Borrar</string>
+    <string name="letra_errada">Esta carta no es esta canción?</string>
+    <string name="recomendado" >Recomendado</string>
+    <string name="emAlta">Em alta</string>
+    <string name="maisTocadas">Más escuchado</string>
+    <string name="nao_pronto">Calma, pero aún no está listo!</string>
+    <string name="app_recomendados">Aplicaciones recomendadas</string>
+    <string name="ok">OK</string>
+    <string name="atualizado">actualizado</string>
+    <string name="reportar_bug">informe de error</string>
+    <string name="sugestao">Sugerencia</string>
+    <string name="added_aos_favoritos">Marcada</string>
+    <string name="editar">Editar</string>
+    <string name="deletar_da_playlist">Eliminar lista de reproducción</string>
+    <string name="deletar_historico">¿Seguro que quieres eliminar todo tu historial?</string>
+    <string name="configurar">Setting</string>
+    <string name="developer_by_fabiano">Desarrollado por Fabiano</string>
+    <string name="alta">Alta</string>
+    <string name="nao_carregar">No cargue</string>
+    <string name="media">Promedio</string>
+    <string name="baixa">Bajo</string>
+    <string name="modo_dados_moveis">Modo de datos móviles</string>
+    <string name="qualidade_image">La calidad de las imágenes</string>
+    <string name="loading_lyrics">Subir letras</string>
+    <string name="allow_notifications">Permitir notificaciones</string>
+    <string name="terminado">Descargar terminado -</string>
+    <string name="downloading">Descargando</string>
+    <string name="qtd_downloads">Descargas simultáneas</string>
+    <string name="compartilhar_apk">Compartir apk</string>
+    <string name="ver_mais">Ver más</string>
+    <string name="explicacao1">No cargará imágenes ni las letras de las canciones.</string>
+    <string name="explicacao2">No cargar letras disminuye el consumo de datos móviles.</string>
+    <string name="explicacao3">Se recomienda dejar activado.</string>
+    <string name="playlist">Playlist</string>
+    <string name="outras_opcoes">Otras opciones</string>
+    <string name="ultimo_item">¡Este ya es el último elemento!</string>
+    <string name="digite_algo">¡Digite algo!</string>
+    <string name="storage_mensage_permition_search">Para poder buscar nos da permiso de lectura.</string>
+    <string name="like">Like us</string>
+    <string name="tentar_novamente">Inténtalo de nuevo</string>
+    <string name="ver_artista">Ver artista</string>
+    <string name="ver_album" >Ver álbum</string>
+    <string name="qualidade_muisc">Calidad de la música</string>
+    <string name="novaVersao">Nueva versión de whatlisten. Haga clic para actualizar.</string>
+    <string name="definir_toque">Establecer como tono de llamada</string>
+</resources>
+

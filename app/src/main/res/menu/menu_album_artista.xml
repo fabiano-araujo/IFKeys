@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Player">
+    <item
+        android:id="@+id/itemAddFav"
+        android:orderInCategory="100"
+        android:title="@string/add_aos_favoritos"
+        android:icon="@drawable/ic_favorite_border_white_24dp"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/item_serach"
+        android:orderInCategory="100"
+        android:title="Pesquisar"
+        android:icon="@drawable/ic_search_white_24dp"
+        app:showAsAction="always" />
+</menu>

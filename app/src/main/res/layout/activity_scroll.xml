@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/svScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?android:windowBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:minHeight="?attr/actionBarSize"
+            app:title="Versões"
+            app:theme="@style/TheToobar" />
+    </android.support.design.widget.AppBarLayout>
+    <include layout="@layout/progress_layout"/>
+    <TextView
+        android:id="@+id/txtMensage"
+        android:visibility="gone"
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#da0b0b"
+        android:textSize="17sp"
+        android:text="Essa música já está nessa playlist!"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:id="@+id/llAdmob2"
+        android:orientation="vertical"/>
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/svItem"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/llItem"
+            android:orientation="vertical"/>
+
+    </android.support.v4.widget.NestedScrollView>
+    <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
+        android:id="@+id/recyclerView"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="0dp"
+        android:layout_marginRight="@dimen/margen_right_scroll"
+        android:paddingEnd="@dimen/margen_left_card"
+        app:fastScrollAutoHide="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:fastScrollAutoHideDelay="3000"
+        app:fastScrollPopupBackgroundSize="78dp"
+        app:fastScrollPopupBgColor="@color/colorPrimary"
+        app:fastScrollPopupTextColor="@android:color/primary_text_dark"
+        app:fastScrollPopupTextSize="46sp"
+        android:paddingLeft="10dp"
+        app:fastScrollThumbColor="@color/colorPrimary"
+        app:fastScrollTrackColor="#f7f7f7"
+        android:layout_weight="1"
+        android:paddingRight="@dimen/margen_left_card" />
+</LinearLayout>

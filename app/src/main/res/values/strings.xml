@@ -1,0 +1,156 @@
+<resources>
+    <string name="app_name" translatable="false">IFkeys</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open" />
+    <string name="drawer_close" />
+    <string name="title_activity_playlists">Playlists</string>
+
+    <string name="ranking_e_generos">Ranking and genres provided by vagalume.</string>
+    <string name="aqui_voce_pode">Here you can download the music you want totally free.</string>
+    <string name="title_home">Home</string>
+    <string name="top_musics">Top musics</string>
+    <string name="top_artists">Top artists</string>
+    <string name="top_albums">Top albums</string>
+    <string name="artistas">Artists</string>
+    <string name="letras">Letters</string>
+    <string name="mais_musics">More music</string>
+    <string name="sem_memoria">No space left on device!</string>
+    <string name="erro_download">An Error occurred in the download!</string>
+    <string name="musics">Musics</string>
+    <string name="minhas_musics">My musics</string>
+    <string name="artistas_desconhecido">Unknown artists</string>
+    <string name="albums">albums</string>
+    <string name="genres">Genres</string>
+    <string name="sair">Exit</string>
+    <string name="esperar">Wait</string>
+    <string name="ficar_aqui">Stay here</string>
+    <string name="senha">Password</string>
+    <string name="nada_encontrado">Nothing found!</string>
+    <string name="navegar">Browser</string>
+    <string name="sobre">About</string>
+    <string name="outras_versoes">Others versions</string>
+    <string name="add_aos_favoritos">Add to Favorites</string>
+    <string name="add_aos_playlist">Add to playlist</string>
+
+    <string name="artitas_relacionados">Related Artists</string>
+
+    <string name="fine_location_mensage_permitioln_mainmenu">To get a better experience with our app, allow ACCESS_FINE_LOCATION!</string>
+
+    <!--activity playlists-->
+    <string name="um_erro_desconhecido">Sorry, but there was an unknown error!</string>
+    <string name="empty_playlist">This playlist hasn\'t music!</string>
+    <string name="tracks">Tracks</string>
+    <string name="downloaded">Downloaded</string>
+    <string name="favorites">Favorites</string>
+    <string name="title_toolbar_playlists">Playlists</string>
+
+    <!--activity player-->
+    <string name="conexao_ruim">Your connection is very bad, reconnect and try again!</string>
+    <string name="desconectado">You are disconnected, connect and try again!</string>
+    <string name="isso_esta_custando">It is costing more than usual!</string>
+    <string name="storage_mensage_permition_player">To can to download that music allow WRITE_EXTERNAL_STORAGE!</string>
+    <string name="estou_ouvindo">I am listen </string>
+    <string name="no_whatlisten"> in the Whatlisten, a android music player.</string>
+    <string name="playlist_atual">current playlist</string>
+    <string name="historico">Historic</string>
+    <string name="logar_mensage">Sign in to can complete your download!</string>
+    <string name="logar_action">Sign in</string>
+    <string name="agora_nao">No now</string>
+    <string name="atualizar">Update</string>
+    <string name="versao_desatualizada">The version that you are using is outdated.</string>
+    <string name="assistir_video">Watch video</string>
+    <string name="cancelar">Cancel</string>
+    <string name="limit_excedido">Limit exceeded</string>
+    <string name="compartilhar">Share</string>
+    <string name="maximo4">Maximum 4 download at a time!</string>
+    <string name="compartilhar_mensage">See the top 100 songs, artists and albums. Download, listen and watch the music video you want, all with a single application!</string>
+    <string name="melhor_app">The best android app to download musics for free!</string>
+    <string name="baixe_aqui"> Download here </string>
+    <string name="compartilhe_e_baixe">Share and download your music!</string>
+
+    <!--activity cadastrar-->
+    <string name="nao_tenho_conta">Do not you have an account?</string>
+    <string name="esquici_minha_senha">I forgot my password</string>
+    <string name="cadastrar">Sig up</string>
+    <string name="digite_seu_nome">Type your name</string>
+    <string name="email_usado">This email is already used!</string>
+    <string name="email_or_senha_incorretos">Email or password is incorrect</string>
+    <string name="pelo_menos_4_digitos">At least 4 digits!</string>
+    <string name="enviada_para_email">Your password has been sent to your email.</string>
+    <string name="carregando">Load...</string>
+    <string name="pesquisar">Search</string>
+    <!--activity cadastrar-->
+    <string name="musicas_da_memoria">Memory songs</string>
+
+    <!--activity discografia-->
+    <string name="musicas_desse_album">Musics from this album</string>
+    <string name="outros_albuns">Other albums</string>
+
+    <!--tab-->
+    <string name="nacional">Brazilian</string>
+    <string name="internacional">International</string>
+    <string name="geral">General</string>
+
+    <string name="deseja_sair">Do you want to leave?</string>
+    <string name="sim">Yes</string>
+    <string name="nao">No</string>
+
+    <string name="reportar">Report</string>
+    <string name="pronto">Ready</string>
+    <string name="digite_seu_comentario">Type your comment</string>
+    <string name="nova">New</string>
+    <string name="musica_salva">Music saved!</string>
+    <string name="esta_playlist_ja">This playlist already exists!</string>
+    <string name="digite_o_nome_da">Type playlist name!</string>
+
+
+    <string name="banner_bottom" translatable="false">ca-app-pub-6058367060031744/2275280333</string>
+    <string name="title_activity_clipe">Video</string>
+    <string name="excluir">Delete</string>
+    <string name="letra_errada">Is not this lyric of this song?</string>
+    <string name="recomendado">Recommended</string>
+    <string name="emAlta">On high</string>
+    <string name="maisTocadas">Most Played</string>
+    <string name="nao_pronto">Calm down, but this is not ready yet!</string>
+    <string name="app_recomendados">Recommended apps</string>
+    <string name="ok">Ok</string>
+    <string name="atualizado">Updated</string>
+    <string name="reportar_bug">Report bug</string>
+    <string name="sugestao">Suggestion</string>
+    <string name="added_aos_favoritos">Added to favorites</string>
+    <string name="editar">To edit</string>
+    <string name="deletar_da_playlist">Delete from playlist</string>
+    <string name="deletar_historico">Are you sure you want to delete all of your history?</string>
+    <string name="configurar">Setting</string>
+    <string name="developer_by_fabiano">Developed by Fabiano Araujo</string>
+    <string name="alta">High</string>
+    <string name="nao_carregar">Do not load</string>
+    <string name="media">Average</string>
+    <string name="baixa">Low</string>
+    <string name="ad_nativo" translatable="false">ca-app-pub-6058367060031744/7255815714</string>
+    <string name="modo_dados_moveis">Mobile Data Mode</string>
+    <string name="qualidade_image">Image quality</string>
+    <string name="loading_lyrics">Loading lyrics</string>
+    <string name="allow_notifications">Allow notifications</string>
+    <string name="terminado">Download finished -</string>
+    <string name="downloading">Downloading</string>
+    <string name="qtd_downloads">Simultaneous downloads</string>
+    <string name="compartilhar_apk">Share apk</string>
+    <string name="ver_mais">View more</string>
+    <string name="explicacao1">It will not load images or lyrics.</string>
+    <string name="explicacao2">Not loading letters decreases the consumption of mobile data.</string>
+    <string name="explicacao3">It is recommended to leave it enabled.</string>
+    <string name="playlist">Playlist</string>
+    <string name="outras_opcoes">Other options</string>
+    <string name="ultimo_item">This is already the last item!</string>
+    <string name="digite_algo">Type something!</string>
+    <string name="storage_mensage_permition_search">To search give us read permission.</string>
+    <string name="like">Like us</string>
+    <string name="tentar_novamente">Try again</string>
+    <string name="ver_artista">See artist</string>
+    <string name="ver_album">See album</string>
+    <string name="qualidade_muisc">Music quality</string>
+    <string name="novaVersao">New version of whatlisten. Click to update.</string>
+    <string name="definir_toque">Set as ringtone</string>
+</resources>
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_weight="1"
+    android:paddingLeft="10dp"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:id="@+id/llRelacionado"
+        android:background="@color/colorAccent"
+        android:layout_height="match_parent">
+        <include layout="@layout/progress_layout"/>
+        <include layout="@layout/no_data"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/artitas_relacionados"
+            android:id="@+id/txtArtistasRld"
+            android:visibility="gone"
+            android:background="#fbf1efef"
+            android:textColor="@color/colorPrimary"
+            android:textSize="17sp"
+            android:paddingLeft="5dp"
+            android:padding="4dp"
+            />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/llArtistaRelacionado"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/musics"
+            android:id="@+id/txtMusicRld"
+            android:visibility="gone"
+            android:background="#fbf1efef"
+            android:textColor="@color/colorPrimary"
+            android:textSize="17sp"
+            android:paddingLeft="5dp"
+            android:padding="4dp"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/llMusicasRelacionadas"
+            android:orientation="vertical" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

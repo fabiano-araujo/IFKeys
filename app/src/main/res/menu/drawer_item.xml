@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <group
+        android:title="main"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/itemSalas"
+            android:icon="@drawable/ic_public_white_24dp"
+            android:title="@string/navegar"
+            />
+        <item
+            android:id="@+id/itemPedidos"
+            android:icon="@drawable/ic_favorite_white_24dp"
+            android:visible="false"
+            android:title="Aprovar"/>
+        <item
+            android:id="@+id/itemHistorico"
+            android:icon="@drawable/ic_favorite_white_24dp"
+            android:title="Histórico de reserva"/>
+        <item
+            android:id="@+id/itemConfigurar"
+            android:icon="@drawable/ic_settings_white_24dp"
+            android:title="@string/action_settings"/>
+        <!--<item
+            android:id="@+id/itemEntrar"
+            android:visible="false"
+            android:icon="@drawable/ic_person_white_24dp"
+            android:title="@string/logar_action"/>-->
+        <item
+            android:title="@string/outras_opcoes"
+            >
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/itemShare"
+                        android:icon="@drawable/ic_share_white_24dp"
+                        android:title="@string/compartilhar"/>
+                    <item
+                        android:id="@+id/itemSobre"
+                        android:icon="@drawable/ic_info_outline_white_24dp"
+                        android:title="@string/sobre"/>
+                    <item
+                        android:id="@+id/itemReportar"
+                        android:icon="@drawable/ic_bug_report_white_24dp"
+                        android:title="@string/reportar_bug"/>
+                </group>
+            </menu>
+        </item>
+    </group>
+</menu>

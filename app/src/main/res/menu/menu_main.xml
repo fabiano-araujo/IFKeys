@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Player">
+    <item
+        android:id="@+id/itemDeleteHistorico"
+        android:orderInCategory="100"
+        android:title="Pesquisar"
+        android:visible="false"
+        android:icon="@drawable/ic_delete_forever_white_24dp"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/item_ad"
+        android:orderInCategory="100"
+        android:title="present"
+        android:visible="false"
+        android:icon="@drawable/ic_present"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/item_serach"
+        android:orderInCategory="100"
+        android:title="Pesquisar"
+        android:icon="@drawable/ic_search_white_24dp"
+        app:showAsAction="always" />
+</menu>

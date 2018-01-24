@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:layout_marginBottom="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/ivCard"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:src="@color/backgroud_music"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="false"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SubTitle"
+            android:maxLines="1"
+            android:textColor="?android:textColorHintInverse"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="4dp"
+            android:textSize="19dp"
+            android:id="@+id/txtSubTitle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="5dp"
+            android:maxLines="2"
+            android:textColor="?android:keyTextColor"
+            android:layout_marginLeft="5dp"
+            android:textSize="15sp"
+            android:id="@+id/txtTitle"/>
+    </LinearLayout>
+</LinearLayout>

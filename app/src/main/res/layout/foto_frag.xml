@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/windowBackground"
+    android:id="@+id/llRoot"
+    android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:id="@+id/appBar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tbMainMenu"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:minHeight="?attr/actionBarSize"
+            app:theme="@style/TheToobar"/>
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:id="@+id/svEnviar"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageUnica"
+                android:layout_width="200dp"
+                android:src="@drawable/galeria"
+                android:layout_gravity="center"
+                android:layout_height="200dp" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/flImagens"
+                android:visibility="gone"
+                android:layout_height="200dp">
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="100dp"
+                    android:src="@drawable/galeria"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_height="100dp" />
+                <ImageView
+                    android:id="@+id/image2"
+                    android:layout_width="100dp"
+                    android:src="@drawable/galeria"
+                    android:layout_gravity="center"
+                    android:layout_height="100dp" />
+                <ImageView
+                    android:id="@+id/image3"
+                    android:layout_width="100dp"
+                    android:src="@drawable/galeria"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_height="100dp" />
+            </FrameLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:text="Terminar"
+                android:background="?colorPrimary"
+                android:id="@+id/btnTerminar"
+                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="60dp"
+                />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

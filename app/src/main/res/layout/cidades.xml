@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llTab"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:minHeight="?attr/actionBarSize"
+            android:title="Escolha uma cidade"
+            android:background="@color/colorPrimary"
+            app:theme="@style/TheToobar"/>
+    </android.support.design.widget.AppBarLayout>
+    <include layout="@layout/progress_layout"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
+            android:id="@+id/recyclerView"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingEnd="@dimen/margen_left_card"
+            app:fastScrollAutoHide="true"
+            android:layout_marginRight="@dimen/margen_right_scroll"
+            app:fastScrollAutoHideDelay="3000"
+            app:fastScrollPopupBackgroundSize="78dp"
+            app:fastScrollPopupBgColor="?colorPrimary"
+            app:fastScrollPopupTextColor="@android:color/primary_text_dark"
+            app:fastScrollPopupTextSize="46sp"
+            app:fastScrollThumbColor="?colorPrimary"
+            app:fastScrollTrackColor="#f7f7f7"
+            android:paddingRight="@dimen/margen_left_card" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <include layout="@layout/no_data" android:visibility="gone"/>
+</LinearLayout>

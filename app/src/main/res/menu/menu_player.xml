@@ -1,0 +1,67 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Player">
+    <item
+        android:id="@+id/itemCloseVideo"
+        android:orderInCategory="100"
+        android:title="download"
+        android:visible="false"
+        android:icon="@drawable/ic_close_white_24dp"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/itemDownload"
+        android:orderInCategory="100"
+        android:title="download"
+        android:visible="false"
+        android:icon="@drawable/ic_file_download_white_24dp"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/itemSugeridos"
+        android:orderInCategory="100"
+        android:title="Plalist"
+        android:icon="@drawable/ic_featured_play_list_white_24dp"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/itemVerArtista"
+        android:orderInCategory="100"
+        android:title="@string/ver_artista"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/itemVerAlbum"
+        android:orderInCategory="100"
+        android:title="@string/ver_album"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/itemVersoes"
+        android:orderInCategory="100"
+        android:title="@string/outras_versoes"
+        app:showAsAction="never" />
+   <item
+        android:id="@+id/itemAddFav"
+        android:orderInCategory="100"
+        android:title="@string/add_aos_favoritos"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/itemAddPlayList"
+        android:orderInCategory="100"
+        android:title="@string/add_aos_playlist"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/itemRingtone"
+        android:orderInCategory="100"
+        android:title="@string/definir_toque"
+        android:visible="false"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/itemEditar"
+        android:orderInCategory="100"
+        android:title="@string/editar"
+        android:visible="false"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/itemShare"
+        android:orderInCategory="100"
+        android:title="@string/compartilhar"
+        app:showAsAction="never" />
+</menu>

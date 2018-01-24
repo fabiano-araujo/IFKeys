@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_weight="1"
+    android:id="@+id/llNoWifi"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/svNoWifi"
+        >
+        <LinearLayout
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <ImageView
+                android:layout_height="150dp"
+                android:layout_width="match_parent"
+                android:id="@+id/ivImage"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/no_wifi"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:id="@+id/txtMensage"
+                android:layout_marginLeft="10dp"
+                android:text="@string/desconectado"
+                android:gravity="center_vertical"
+                android:textSize="18sp"
+                />
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tentar_novamente"
+                android:background="?colorPrimary"
+                android:visibility="gone"
+                android:id="@+id/btnTryAgain"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="24dp"
+                />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

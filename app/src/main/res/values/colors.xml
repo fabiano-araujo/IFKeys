@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--thema 1-->
+    <color name="colorPrimary">#aa00ff</color>
+    <color name="colorSecond">#219bff</color>
+    <color name="colorPrimaryDark">#8d00d4</color>
+    <color name="colorAccent">#fff</color>
+    <color name="music_control">#fff</color>
+    <color name="windowBackground">#f5f5f5</color>
+    <color name="textColor">#787777</color>
+    <color name="colorControlNormal">#ccc</color>
+
+    <!--thema 2-->
+    <color name="colorPrimary2">#b6034a</color>
+    <color name="colorSecond2">#1198c9</color>
+    <color name="colorPrimaryDark2">#a70344</color>
+    <color name="colorAccent2">#fff</color>
+    <color name="music_control2">#fff</color>
+    <color name="windowBackground2">#f5f5f5</color>
+    <color name="colorControlNormal2">#ccc</color>
+
+    <!--thema 2-->
+    <color name="colorPrimary3">#4b4b4b</color>
+    <color name="colorSecond3">#b60006</color>
+    <color name="colorPrimaryDark3">#151515</color>
+    <color name="colorAccent3">#b60006</color>
+    <color name="music_control3">#595959</color>
+    <color name="windowBackground3">#050505</color>
+    <color name="colorControlNormal3">#4b4b4b</color>
+
+
+    <color name="FAB">#FF5722</color>
+    <color name="orange">#ffc337</color>
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+    <color name="black_setting">#363636</color>
+    <color name="backgroud_music">#b3000000</color>
+    <color name="notification">#534f4f</color>
+    <color name="status_bar_music">#000000</color>
+    <color name="bg_card">#344556</color>
+
+    <color name="green">#0ace00</color>
+</resources>
+
+
