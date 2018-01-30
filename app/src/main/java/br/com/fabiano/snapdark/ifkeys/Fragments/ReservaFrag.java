@@ -1,8 +1,10 @@
 package br.com.fabiano.snapdark.ifkeys.Fragments;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import br.com.fabiano.snapdark.ifkeys.R;
 import br.com.fabiano.snapdark.ifkeys.model.Reserva;
 import br.com.fabiano.snapdark.ifkeys.utils.Constants;
 import br.com.fabiano.snapdark.ifkeys.utils.FragControl;
+import br.com.fabiano.snapdark.ifkeys.utils.helpers.AlertUtil;
 
 public class ReservaFrag extends Fragment {
     private Toolbar toolbar;
@@ -25,7 +28,6 @@ public class ReservaFrag extends Fragment {
     private ImageView imageView;
     private TextView txtTitle, txtNumero, txtEstado,txtCampus, txtReservado, txtEntregue,txtPor;
     View view;
-    private int position = 0;
     private Activity activity;
     private Reserva reserva;
 
@@ -47,6 +49,36 @@ public class ReservaFrag extends Fragment {
             btnReservar.setText("Ocupada");
             btnReservar.setEnabled(false);
         }
+        if (reserva.usuario.equals(((Main)activity).logged.matricula)){
+            if (reserva.confirmada){
+                if (!reserva.entregue){
+                    btnReservar.setText("Entregar");
+                    btnReservar.setOnClickListener(null);
+                    btnReservar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+                }
+            }else {
+                btnReservar.setText("Solicitada");
+                btnReservar.setOnClickListener(null);
+                btnReservar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialog.Builder cancel = new AlertDialog.Builder(activity);
+                        cancel.setMessage("Cancelar solicitação?").setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).setNegativeButton("Não",null);
+                        AlertUtil.showAlert(cancel,activity);
+                    }
+                });
+            }
+        }
         btnReservar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,11 +86,17 @@ public class ReservaFrag extends Fragment {
                         FragControl.getADDProdutoFrag(reserva.id),true,false,false);*/
             }
         });
+
         txtTitle.setText("N°"+ reserva.sala.numero+". "+ reserva.sala.nome);
         txtNumero.setText("Número: "+ reserva.sala.numero);
         txtCampus.setText(reserva.sala.campus);
         txtReservado.setText("Reservado em: "+reserva.dt_start);
         txtEntregue.setText("Entregue em: "+reserva.dt_end);
+        if (((Main)activity).logged.matricula.equals(reserva.usuario)){
+            txtPor.setVisibility(View.GONE);
+        }
+        txtPor.setText("Reservado por: "+reserva.usuario);
+
         if (reserva.sala.disponivel){
             txtEstado.setText("Disponível");
         }else{

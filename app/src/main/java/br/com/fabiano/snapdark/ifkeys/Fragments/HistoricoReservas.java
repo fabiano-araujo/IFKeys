@@ -309,9 +309,6 @@ public class HistoricoReservas extends Fragment {
 
     @Override
     public void onDestroyView() {
-        if (reservas != null){
-            reservas.clear();
-        }
         recyclerView.setAdapter(null);
         Control.unbindDrawables(view);
         view = null;

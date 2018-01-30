@@ -12,6 +12,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -36,19 +39,16 @@ public class TiposSalas extends Fragment {
         view = inflater.inflate(R.layout.maim_fragment, null, false);
         view.setOnClickListener(new View.OnClickListener() {@Override
         public void onClick(View v) {}});
-        instance(view);
         activity = getActivity();
+        instance(view);
         /*moPubView = (MoPubView) view.findViewById(R.id.moPubView);
         moPubView.setAdUnitId("276a4c15670c4c7e84b616b519503380");
         moPubView.loadAd();*/
-        tabLayout.removeAllTabs();
         tabLayout.addTab(tabLayout.newTab().setText("Disponíveis"));
         tabLayout.addTab(tabLayout.newTab().setText("Ocupadas"));
-        tabLayout.setTabGravity(TabLayout.MODE_SCROLLABLE);
 
-        myPagerMenuMain = new MenuSalas(activity.getSupportFragmentManager(),tabLayout.getTabCount());
+        myPagerMenuMain = new MenuSalas(getChildFragmentManager(),tabLayout.getTabCount());
         vpMainMenu.setAdapter(myPagerMenuMain);
-        vpMainMenu.getAdapter().notifyDataSetChanged();
 
 
         vpMainMenu.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -66,12 +66,17 @@ public class TiposSalas extends Fragment {
     }
 
     private void instance(View view) {
-        toolbar = view.findViewById(R.id.tbMainMenu);
         vpMainMenu =view.findViewById(R.id.pager);
         tabLayout = view.findViewById(R.id.tlMainMenu);
         tabLayout.setVisibility(View.VISIBLE);
-        ((AppCompatActivity)activity).setSupportActionBar(toolbar);
-        drawerLayout= activity.findViewById(R.id.drawerLayout);
+
+
+        toolbar = view.findViewById(R.id.tbMainMenu);
+        toolbar.setTitle("Salas");
+
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+
+        drawerLayout= (DrawerLayout) activity.findViewById(R.id.drawerLayout);
         ((Main)activity).toggle = new ActionBarDrawerToggle(activity,drawerLayout, toolbar,R.string.drawer_open,R.string.drawer_close);
         drawerLayout.addDrawerListener(((Main)activity).toggle);
         ((Main)activity).toggle.syncState();

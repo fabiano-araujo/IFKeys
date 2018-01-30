@@ -4,10 +4,8 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +23,10 @@ import java.util.List;
 
 import br.com.fabiano.snapdark.ifkeys.Main;
 import br.com.fabiano.snapdark.ifkeys.R;
+import br.com.fabiano.snapdark.ifkeys.model.Reserva;
 import br.com.fabiano.snapdark.ifkeys.model.Sala;
 import br.com.fabiano.snapdark.ifkeys.utils.Constants;
+import br.com.fabiano.snapdark.ifkeys.utils.adapters_rv.AdapterHisReserva;
 import br.com.fabiano.snapdark.ifkeys.utils.adapters_rv.AdapterSalas;
 import br.com.fabiano.snapdark.ifkeys.utils.helpers.AlertUtil;
 import br.com.fabiano.snapdark.ifkeys.utils.helpers.Control;
@@ -38,38 +38,38 @@ import okhttp3.RequestBody;
 
 public class SalasFrag extends Fragment {
     private FastScrollRecyclerView recyclerView;
-    private List<Sala> salas = new ArrayList<>();
+    private List<Sala> salas = null;
     private Button btnTryAgain;
     private FrameLayout frameLayout;
     private String conexao_ruim;
     LinearLayout llNoData;
-    private LinearLayout llTab;
     View view;
-    private Sala sala;
     String link = null;
-    private Toolbar toolbar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private boolean btnClicked = false;
     private boolean pagination = false;
     private AdapterSalas adapterSalas;
+    private AdapterHisReserva adapterHisReserva;
     private long tipoSala = -1;
+    private List<Reserva> reservadas;
 
     public SalasFrag(){}
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.lojas, container, false);
+        view = inflater.inflate(R.layout.salas, container, false);
         conexao_ruim = getResources().getString(R.string.conexao_ruim);
+        if (tipoSala == Constants.SALAS_DISPONIVEIS){
+            salas = new ArrayList<>();
+        }else{
+            reservadas = new ArrayList<>();
+        }
         if (getArguments() != null){
-            sala = getArguments().getParcelable("sala");
             tipoSala = getArguments().getLong("matricula",-1);
         }
         if (savedInstanceState != null){
             salas = ((Main)getActivity()).getSaveFragment().lists.get(tipoSala);
         }
         instance();
-        if (getArguments().getBoolean("showToolbar")){
-            toolbar.setVisibility(View.VISIBLE);
-        }
         if (savedInstanceState != null && salas.size() > 0){
             /*adapterTop = new AdapterTop(getActivity(), salas,null,tab);
             recyclerView.setAdapter(adapterTop);*/
@@ -94,8 +94,14 @@ public class SalasFrag extends Fragment {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 LinearLayoutManager llm = (LinearLayoutManager) recyclerView.getLayoutManager();
-                if (salas.size() == llm.findLastCompletelyVisibleItemPosition()+1){
-                    paganation();
+                if (tipoSala == Constants.SALAS_DISPONIVEIS){
+                    if (salas.size() == llm.findLastCompletelyVisibleItemPosition()+1){
+                        paganation();
+                    }
+                }else{
+                    if (reservadas.size() == llm.findLastCompletelyVisibleItemPosition()+1){
+                        paganation();
+                    }
                 }
             }
         });
@@ -104,22 +110,10 @@ public class SalasFrag extends Fragment {
     }
 
     private void instance() {
-        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        toolbar.setTitle("SalasFrag");
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((Main)getActivity()).onBackPressed();
-            }
-        });
-
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         llNoData = view.findViewById(R.id.llNoData);
         btnTryAgain = view.findViewById(R.id.btnTryAgain);
         btnTryAgain.setVisibility(View.VISIBLE);
-        llTab = view.findViewById(R.id.llTab);
         frameLayout = view.findViewById(R.id.flProgressBar);
         ((ProgressBar)view.findViewById(R.id.progressBar)).getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
         //frameLayout.setVisibility(View.GONE);
@@ -142,9 +136,17 @@ public class SalasFrag extends Fragment {
             }
         });
     }
+    public int getSizeList(){
+        if (tipoSala == Constants.SALAS_DISPONIVEIS){
+            return salas.size();
+        }else{
+            return reservadas.size();
+        }
+    }
     public void paganation(){
-        if (Control.isOnline(getContext()) && salas.size() >= 10){
+        if (Control.isOnline(getContext()) && getSizeList() >= 10){
             if (!pagination){
+                AlertUtil.log("reflesh","true");
                 pagination = true;
                 link = Control.URL_SEVER+"/ifkeys/salaApi.php";
                 AlertUtil.log("linkPag",link);
@@ -155,7 +157,7 @@ public class SalasFrag extends Fragment {
                 formBuilder.add("index", salas.size()+"");
                 formBuilder.add("operation","2");
                 formBuilder.add("key","-k^(CA>lU!j[Xc#");
-                formBuilder.add("campus","jc");
+                formBuilder.add("campus",((Main)getActivity()).logged.campus);
 
                 if (tipoSala != -1){
                     if (tipoSala == Constants.SALAS_DISPONIVEIS){
@@ -176,6 +178,7 @@ public class SalasFrag extends Fragment {
                     @Override
                     public void onFailure(Call call, IOException e) {
                         call.cancel();
+                        AlertUtil.log("reflesh","false");
                         reflesh(false);
                     }
 
@@ -184,16 +187,26 @@ public class SalasFrag extends Fragment {
                         try{
                             final String r = response.body().string();
                             try {
+                                AlertUtil.log("reflesh","false");
                                 reflesh(false);
                                 JSONObject object = new JSONObject(r);
                                 if (object.getBoolean("success")){
                                     if (AlertUtil.isRunning(getActivity())){
-                                        List<Sala> ls = Control.getSalas(r);
-                                        for (int i = 0; i < ls.size(); i++) {
-                                            adapterSalas.add(adapterSalas.getItemCount(),ls.get(i));
+                                        if (tipoSala == Constants.SALAS_DISPONIVEIS) {
+                                            List<Sala> ls = Control.getSalas(r);
+                                            for (int i = 0; i < ls.size(); i++) {
+                                                adapterSalas.add(adapterSalas.getItemCount(),ls.get(i));
+                                            }
+                                            ls.clear();
+                                            ls = null;
+                                        } else {
+                                            List<Reserva> ls = Control.getReservas(r);
+                                            for (int i = 0; i < ls.size(); i++) {
+                                                adapterHisReserva.add(adapterHisReserva.getItemCount(),ls.get(i));
+                                            }
+                                            ls.clear();
+                                            ls = null;
                                         }
-                                        ls.clear();
-                                        ls = null;
                                     }
                                 }
                             } catch (Exception e) {
@@ -204,6 +217,8 @@ public class SalasFrag extends Fragment {
                 });
                 pagination = false;
             }
+        }else{
+            reflesh(false);
         }
     }
 
@@ -304,45 +319,74 @@ public class SalasFrag extends Fragment {
 
                 @Override
                 public void onResponse(Call call, final okhttp3.Response response) throws IOException {
-                    try{
+                    try {
                         final String r = response.body().string();
-                        AlertUtil.log("responseMus",r+"");
+                        AlertUtil.log("responseMus", r + "");
                         try {
                             JSONObject object = new JSONObject(r);
-                            if (object.getBoolean("success")){
-                                if (AlertUtil.isRunning(getActivity())){
-                                    salas = Control.getSalas(r);
-                                    if (salas.size() == 0){
-                                        if (tipoSala != -1){
-                                            showErroWifi("Nenhuma sala!");
-                                            btnTryAgain.setOnClickListener(new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View v) {
-
-                                                }
-                                            });
-                                        }else{
-                                            showErroWifi(getString(R.string.nada_encontrado));
-                                        }
-                                    }else{
-                                        adapterSalas = new AdapterSalas(getActivity(), salas);
-                                        recyclerView.setAdapter(adapterSalas);
-                                        setOK();
+                            if (object.getBoolean("success")) {
+                                if (AlertUtil.isRunning(getActivity())) {
+                                    if (tipoSala == Constants.SALAS_DISPONIVEIS) {
+                                        setSalas(r);
+                                    } else {
+                                        setReservadas(r);
                                     }
                                 }
-                            }else {
+                            } else {
                                 showErroWifi(getString(R.string.nada_encontrado));
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                    }catch (Exception e){e.printStackTrace();}
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }
     }
 
-    
+    private void setSalas(String r) {
+        salas = Control.getSalas(r);
+        if (salas.size() == 0){
+            if (tipoSala != -1){
+                showErroWifi("Nenhuma sala!");
+                btnTryAgain.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+            }else{
+                showErroWifi(getString(R.string.nada_encontrado));
+            }
+        }else{
+            adapterSalas = new AdapterSalas(getActivity(), salas);
+            recyclerView.setAdapter(adapterSalas);
+            setOK();
+        }
+    }
+
+    public void setReservadas(String r) {
+        reservadas = Control.getReservas(r);
+        if (reservadas.size() == 0){
+            if (tipoSala != -1){
+                showErroWifi("Nenhuma sala!");
+                btnTryAgain.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+            }else{
+                showErroWifi(getString(R.string.nada_encontrado));
+            }
+        }else{
+            adapterHisReserva = new AdapterHisReserva(getActivity(), reservadas);
+            recyclerView.setAdapter(adapterHisReserva);
+            setOK();
+        }
+    }
     @Override
     public void onDestroyView() {
         Control.unbindDrawables(view);

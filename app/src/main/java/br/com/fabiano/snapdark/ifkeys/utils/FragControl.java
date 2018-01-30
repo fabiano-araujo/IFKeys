@@ -44,10 +44,11 @@ public class FragControl {
         return reservaFrag;
     }
 
-    public static Fragment getSalaFrag(Sala sala) {
+    public static Fragment getSalaFrag(Sala sala,boolean qrcode) {
         SalaFrag lojaFrag = new SalaFrag();
         Bundle bundle = new Bundle();
         bundle.putParcelable("sala", sala);
+        bundle.putBoolean("qrcode",qrcode);
         lojaFrag.setArguments(bundle);
         return lojaFrag;
     }

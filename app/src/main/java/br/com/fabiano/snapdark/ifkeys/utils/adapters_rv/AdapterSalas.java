@@ -50,7 +50,7 @@ public class AdapterSalas extends RecyclerView.Adapter<AdapterSalas.MyViewHolder
         final Sala sala = salas.get(position);
         myViewHolder.txtTitle.setText(sala.nome);
         myViewHolder.txtSubTitle.setText("Número: "+sala.numero);
-        myViewHolder.txtFirst.setText(sala.nome.charAt(0)+"".toUpperCase());
+        myViewHolder.txtFirst.setText(sala.numero+"");
 
         /*Control.setFoto(Control.URL_SEVER+"/ecomerce/uploads/user"+sala.usuario.id+"/sala"+sala.id+"/logo.jpg",
                 myViewHolder.imageView,mContext,14);*/
@@ -59,7 +59,7 @@ public class AdapterSalas extends RecyclerView.Adapter<AdapterSalas.MyViewHolder
             @Override
             public void onClick(View view) {
             ((Main)mContext).itemClicado(-1, Constants.SALA,
-                    FragControl.getSalaFrag(sala),true,false,false);
+                    FragControl.getSalaFrag(sala,false),true,false,false);
 
             }
         });

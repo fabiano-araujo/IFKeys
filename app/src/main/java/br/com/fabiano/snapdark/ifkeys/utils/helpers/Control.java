@@ -575,6 +575,8 @@ public class Control {
 
                 reserva.sala = sala;
                 reserva.usuario = item.getString("usuario");
+                reserva.confirmada = item.getBoolean("confirmada");
+                reserva.entregue = item.getBoolean("entregue");
                 Reservas.add(reserva);
             }
         } catch (JSONException e) {

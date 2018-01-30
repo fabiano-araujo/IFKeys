@@ -13,14 +13,19 @@ public class Reserva implements Parcelable {
     public String dt_start;
     public String dt_end;
     public String usuario;
+    public boolean confirmada;
+    public boolean entregue;
 
     public Reserva(){}
+
     protected Reserva(Parcel in) {
         id_reserva = in.readLong();
         sala = in.readParcelable(Sala.class.getClassLoader());
         dt_start = in.readString();
         dt_end = in.readString();
         usuario = in.readString();
+        confirmada = in.readByte() != 0;
+        entregue = in.readByte() != 0;
     }
 
     @Override
@@ -30,6 +35,8 @@ public class Reserva implements Parcelable {
         dest.writeString(dt_start);
         dest.writeString(dt_end);
         dest.writeString(usuario);
+        dest.writeByte((byte) (confirmada ? 1 : 0));
+        dest.writeByte((byte) (entregue ? 1 : 0));
     }
 
     @Override

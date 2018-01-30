@@ -6,22 +6,6 @@
     android:background="@color/windowBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <include layout="@layout/progress_layout"/>
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="6dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        >
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="?attr/actionBarSize"
-            android:minHeight="?attr/actionBarSize"
-            android:title="Entrar"
-            android:background="@color/colorPrimary"
-            app:theme="@style/TheToobar"/>
-    </android.support.design.widget.AppBarLayout>
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:id="@+id/swipeRefreshLayout"
@@ -33,9 +17,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingEnd="@dimen/margen_left_card"
             app:fastScrollAutoHide="true"
-            android:layout_marginRight="@dimen/margen_right_scroll"
             app:fastScrollAutoHideDelay="3000"
             app:fastScrollPopupBackgroundSize="78dp"
             app:fastScrollPopupBgColor="?colorPrimary"
@@ -43,7 +25,7 @@
             app:fastScrollPopupTextSize="46sp"
             app:fastScrollThumbColor="?colorPrimary"
             app:fastScrollTrackColor="#f7f7f7"
-            android:paddingRight="@dimen/margen_left_card" />
+             />
     </android.support.v4.widget.SwipeRefreshLayout>
     <include layout="@layout/no_data" android:visibility="gone"/>
 </LinearLayout>

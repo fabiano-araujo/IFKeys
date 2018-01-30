@@ -51,10 +51,10 @@ public class Enviar extends Fragment{
         radioGroup = (RadioGroup) view.findViewById(R.id.radio);
         editText = (EditText) view.findViewById(R.id.edtComentario);
         textInputLayout = (TextInputLayout) view.findViewById(R.id.textInputLayout);
-        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        toolbar = (Toolbar) view.findViewById(R.id.tbMainMenu);
 
 
-        toolbar.setTitle(getString(R.string.top_albums));
+        toolbar.setTitle(getString(R.string.reportar));
         ((AppCompatActivity)activity).setSupportActionBar(toolbar);
 
         drawerLayout= (DrawerLayout) activity.findViewById(R.id.drawerLayout);

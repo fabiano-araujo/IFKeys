@@ -3,6 +3,8 @@ package br.com.fabiano.snapdark.ifkeys.Fragments;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
@@ -11,12 +13,15 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -32,6 +37,7 @@ import br.com.fabiano.snapdark.ifkeys.model.User;
 import br.com.fabiano.snapdark.ifkeys.utils.Constants;
 import br.com.fabiano.snapdark.ifkeys.utils.helpers.AlertUtil;
 import br.com.fabiano.snapdark.ifkeys.utils.helpers.Control;
+import br.com.fabiano.snapdark.ifkeys.utils.helpers.DAO;
 import br.com.fabiano.snapdark.ifkeys.utils.helpers.StaticValues;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -41,7 +47,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 public class Login extends Fragment {
-    Button button,btnCadastrar;
+    Button button,btnEsquici;
     EditText editEmail,edtSenha;
     TextInputLayout iptEmail,iptSenha;
     Toolbar toolbar;
@@ -50,6 +56,7 @@ public class Login extends Fragment {
     private Activity activity;
     LinearLayout llRoot;
     boolean erro = false;
+    private SwitchCompat scMSenha;
     User user;
     public Login(){}
     @Override
@@ -59,6 +66,24 @@ public class Login extends Fragment {
         public void onClick(View v) {}});
         activity = getActivity();
         instance();
+        btnEsquici.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://suap.ifrn.edu.br/comum/solicitar_trocar_senha/"));
+                startActivity(browserIntent);
+            }
+        });
+        scMSenha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    edtSenha.setTransformationMethod(new PasswordTransformationMethod());
+                }else{
+                    edtSenha.setTransformationMethod(null);
+                }
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,12 +97,13 @@ public class Login extends Fragment {
                         @Override
                         public void run() {
                             try{
+                                AlertUtil.log("dados",editEmail.getText().toString().trim()+" "
+                                        +edtSenha.getText().toString().trim());
                                 FormBody.Builder formBuilder = new FormBody.Builder();
-                                formBuilder.add("username",editEmail.getText().toString());
-                                formBuilder.add("password",edtSenha.getText().toString());
+                                formBuilder.add("username",editEmail.getText().toString().trim());
+                                formBuilder.add("password",edtSenha.getText().toString().trim());
 
                                 RequestBody formBody = formBuilder.build();
-
 
                                 okhttp3.Request request = new okhttp3.Request.Builder()
                                         .url("https://suap.ifrn.edu.br/api/v2/autenticacao/token/").tag(Constants.REQUEST)
@@ -99,6 +125,20 @@ public class Login extends Fragment {
                                 response = StaticValues.getInstance().getOkHttpClient().newCall(request).execute();
                                 String r = response.body().string();
                                 user = Control.getUser(r);
+
+                                DAO dao = new DAO(activity);
+                                dao.login(user);
+                                dao.close();
+
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ((Main)activity).setDrawerEnabled(true);
+                                        ((Main)activity).itemClicado(R.id.itemSalas, Constants.TIPOS_SALA,
+                                                new TiposSalas(), false, true, false);
+                                        ((Main)activity).popupItemBackState(Constants.LOGIN);
+                                    }
+                                });
                                 Log.i("resultado",user.nome+" "+user.matricula);
                             }catch (Exception e){
                                 e.printStackTrace();
@@ -129,7 +169,8 @@ public class Login extends Fragment {
     }
 
     private void instance() {
-        btnCadastrar = view.findViewById(R.id.btnCadastrar);
+        scMSenha = view.findViewById(R.id.scMostrar);
+        btnEsquici = view.findViewById(R.id.btnEsquici);
         llRoot = view.findViewById(R.id.llRoot);
         button = (Button) view.findViewById(R.id.btnEntrar);
         editEmail = view.findViewById(R.id.edtEmail);
@@ -140,12 +181,12 @@ public class Login extends Fragment {
 
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.setTitle("Entrar");
-        ((AppCompatActivity)activity).setSupportActionBar(toolbar);
 
         drawerLayout= (DrawerLayout) activity.findViewById(R.id.drawerLayout);
         ((Main)activity).toggle = new ActionBarDrawerToggle(activity,drawerLayout, toolbar,R.string.drawer_open,R.string.drawer_close);
         drawerLayout.addDrawerListener(((Main)activity).toggle);
         ((Main)activity).toggle.syncState();
+        ((Main)activity).setDrawerEnabled(false);
     }
 
     @Override

@@ -18,6 +18,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,10 +28,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,13 +46,17 @@ import br.com.fabiano.snapdark.ifkeys.Fragments.Login;
 import br.com.fabiano.snapdark.ifkeys.Fragments.TiposSalas;
 import br.com.fabiano.snapdark.ifkeys.Fragments.SaveFrag;
 import br.com.fabiano.snapdark.ifkeys.Fragments.SobreFrag;
+import br.com.fabiano.snapdark.ifkeys.model.Sala;
 import br.com.fabiano.snapdark.ifkeys.model.User;
 import br.com.fabiano.snapdark.ifkeys.utils.Constants;
 import br.com.fabiano.snapdark.ifkeys.utils.FragControl;
 import br.com.fabiano.snapdark.ifkeys.utils.GlideApp;
 import br.com.fabiano.snapdark.ifkeys.utils.helpers.AlertUtil;
 import br.com.fabiano.snapdark.ifkeys.utils.helpers.Control;
+import br.com.fabiano.snapdark.ifkeys.utils.helpers.Criptografia;
+import br.com.fabiano.snapdark.ifkeys.utils.helpers.DAO;
 import br.com.fabiano.snapdark.ifkeys.utils.helpers.StaticValues;
+
 
 public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public ActionBarDrawerToggle toggle;
@@ -62,7 +71,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     //public Configuracao configuracao;
     public boolean initBottomSheet = false;
     public boolean pausado = false;
-    private String pathImg = null;
     public WeakReference<Main> mainIsRunning;
     public ContentResolver contentResolver;
     public SaveFrag saveFrag;
@@ -75,6 +83,20 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         setContentView(R.layout.activity_menu_main);
         mainIsRunning = new WeakReference<Main>(this);
         contentResolver = getContentResolver();
+
+
+        try {
+            byte[] textoencriptado = Criptografia.encryptMsg("fabiano");
+            for (int i=0; i<textoencriptado.length; i++)
+                System.out.print(new Integer(textoencriptado[i])+" ");
+
+
+            String textodecriptado = Criptografia.decryptMsg(textoencriptado);
+            AlertUtil.log("cript",new String(textoencriptado)+" - "+textodecriptado);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
 
         fm = getSupportFragmentManager();
@@ -92,14 +114,20 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         navigationView.getMenu().findItem(R.id.itemSalas).setChecked(true);
 
         if (savedInstanceState == null) {
-            itemSelect = Constants.TIPOS_SALA;
-            if (getIntent().getIntExtra("itemSelect", -1) != -1) {
-                itemSelect = getIntent().getIntExtra("itemSelect", -1);
+            DAO dao = new DAO(this);
+            logged = dao.getLogged();
+            if (logged != null){
+                itemSelect = Constants.TIPOS_SALA;
+                if (getIntent().getIntExtra("itemSelect", -1) != -1) {
+                    itemSelect = getIntent().getIntExtra("itemSelect", -1);
 
-            }/* else if (Control.isOnline(this)) {
+                }/* else if (Control.isOnline(this)) {
                 itemClicado(R.id.itemHome, itemSelect, new MainFragment(), false, true, false);
             }*/
-            itemClicado(R.id.itemSalas, itemSelect, new TiposSalas(), false, true, false);
+                itemClicado(R.id.itemSalas, itemSelect, new TiposSalas(), false, true, false);
+            }else{
+                itemClicado(-1, Constants.LOGIN,new Login(),true,false,true);
+            }
         }
 
         boolean alarmeAtivo = (PendingIntent.getBroadcast(this, 0, new Intent("ALARME_WHATLISTEN"), PendingIntent.FLAG_NO_CREATE) == null);
@@ -112,7 +140,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             AlarmManager alarme = (AlarmManager) getSystemService(ALARM_SERVICE);
             alarme.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
-
         getHeader();
     }
 
@@ -322,6 +349,11 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             case android.R.id.home:
                 onBackPressed();
                 break;
+            case R.id.itemQrCode:
+                IntentIntegrator integrator = new IntentIntegrator(this);
+                integrator.setPrompt("Posicione a camera sobre o QR Code");
+                integrator.initiateScan();
+                break;
             case R.id.item_serach:
                 itemClicado(-1, Constants.SEARCHFRAG, FragControl.getSearchFrag(),true,false,true);
                 break;
@@ -388,22 +420,42 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             super.onSaveInstanceState(outState);
         }catch (Exception e){e.printStackTrace();}
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent){
         try {
-            if (resultCode == RESULT_OK){
-                /*if(requestCode == ImageUtil.IMAGEM_INTERNA) {
-                    AlertUtil.Log("IMAGEM_INTERNA","IMAGEM_INTERNA");
-                    FotoFrag fotoFrag = (FotoFrag) getSupportFragmentManager().findFragmentByTag(Constants.FOTO_FRAG + "");
-                    fotoFrag.addFoto(ImageUtil.getRealPathFromURI(this, intent.getData()));
-                }*/
+            IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+            if (scanResult != null) {
+                String stringQrcode = scanResult.getContents();
+                try {
+                    stringQrcode = new String(Base64.decode(Base64.encodeToString((stringQrcode)
+                            .getBytes(),Base64.DEFAULT),Base64.DEFAULT),"UTF-8");
+                    String partes[] = stringQrcode.split(";,");
+                    Sala sala = new Sala();
+                    sala.id = Integer.parseInt(partes[0]);
+                    sala.nome = partes[1];
+                    sala.numero = Integer.parseInt(partes[2]);
+                    sala.campus = partes[3];
+                    itemClicado(-1, Constants.SALA,
+                            FragControl.getSalaFrag(sala,true),true,false,false);
+                } catch (Exception e) {
+                    AlertUtil.showAlert(Toast.makeText(this,"Leia um QR Code de uma chave!",Toast.LENGTH_LONG),this);
+                    e.printStackTrace();
+                }
+                AlertUtil.log("stringQrcode",stringQrcode+"");
             }
         }catch (Exception e){
-            AlertUtil.showAlert(Snackbar.make(fragment_conteudo, getString(R.string.um_erro_desconhecido)
-                    , Snackbar.LENGTH_LONG),this);
             e.printStackTrace();
         }
     }
+
+    public void setDrawerEnabled(boolean enabled) {
+        int lockMode = enabled ? DrawerLayout.LOCK_MODE_UNLOCKED :
+                DrawerLayout.LOCK_MODE_LOCKED_CLOSED;
+        drawerLayout.setDrawerLockMode(lockMode);
+        toggle.setDrawerIndicatorEnabled(enabled);
+    }
+
     @Override
     public void onStart() {
         super.onStart();

@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Player">
     <item
-        android:id="@+id/itemDeleteHistorico"
+        android:id="@+id/itemQrCode"
         android:orderInCategory="100"
-        android:title="Pesquisar"
-        android:visible="false"
-        android:icon="@drawable/ic_delete_forever_white_24dp"
+        android:title="Ler QrCode"
+        android:icon="@drawable/qrcode"
         app:showAsAction="always" />
     <item
         android:id="@+id/item_ad"
